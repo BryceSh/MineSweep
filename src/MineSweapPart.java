@@ -83,7 +83,7 @@ public class MineSweapPart extends JFrame
 
         mineGrid = new int[MINE_GRID_ROWS][MINE_GRID_COLS];
         minesLeftOnGrid.clear(); // This clears the ArrayList for the hint system.
-        hintCount = DEFAULT_HINT;
+        hintCount = Math.min(TOTAL_MINES, DEFAULT_HINT);
         guessedMinesLeft = TOTAL_MINES;
         actualMinesLeft = TOTAL_MINES;
         GameTime = LocalTime.now(); // Gets the current time
