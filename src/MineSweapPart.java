@@ -213,6 +213,7 @@ public class MineSweapPart extends JFrame
     Once I did that, I could just call the buttonPanel and do .getComponent(randomIndex) to get the button I wanted and set the text to be
     a star
      */
+    // Redesigned
     private static class HintButton implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
             if (hintCount > 0 && minesLeftOnGrid.size() != 0 && game.running) {
