@@ -12,7 +12,7 @@ public class InformationScreen {
 
     public InformationScreen() {
 
-        JFrame frame = new JFrame("Options");
+        JFrame frame = new JFrame("About");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         WindowListener listener = new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {

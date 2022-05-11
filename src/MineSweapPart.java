@@ -127,11 +127,11 @@ public class MineSweapPart extends JFrame
         {
             for (int gc = 0; gc < MINE_GRID_COLS; ++gc)
             {
-                // set sGrid[gr][gc] entry to 0 - no mines in it's perimeter
+                // set sGrid[gr][gc] entry to 0 - no mines in its perimeter
                 this.mineGrid[gr][gc] = 0;
                 // create a MyJButton that will be at location (br, bc) in the GridLayout
                 MyJButton but = new MyJButton("", gr, gc);
-                // register the event handler with this MyJbutton
+                // register the event handler with this MyJButton
                 but.setOpaque(true);
                 but.setBorderPainted(false);
                 but.setBorder(BorderFactory.createEmptyBorder());
@@ -145,7 +145,7 @@ public class MineSweapPart extends JFrame
         this.add(buttonPanel, BorderLayout.CENTER);
     }
 
-    // place TOTAL_MINES number of mines in mineGrid and adjust all of the "mines in perimeter" values
+    // place TOTAL_MINES number of mines in mineGrid and adjust all the "mines in perimeter" values
     // 40 pts
     private void setMines()
     {
@@ -186,14 +186,14 @@ public class MineSweapPart extends JFrame
 
     private String getGridValueStr(int row, int col)
     {
-        // no mines in this MyJbutton's perimeter
+        // no mines in this MyJButton's perimeter
         if ( this.mineGrid[row][col] == NO_MINES_IN_PERIMETER_GRID_VALUE )
             return "";
             // 1 to 8 mines in this MyJButton's perimeter
         else if ( this.mineGrid[row][col] > NO_MINES_IN_PERIMETER_GRID_VALUE &&
                 this.mineGrid[row][col] <= ALL_MINES_IN_PERIMETER_GRID_VALUE )
             return "" + this.mineGrid[row][col];
-            // this MyJButton in a mine
+            // this MyJButton in a
         else // this.mineGrid[row][col] = IS_A_MINE_IN_GRID_VALUE
             return MineSweapPart.EXPOSED_MINE_SYMBOL;
     }
@@ -260,16 +260,16 @@ public class MineSweapPart extends JFrame
                 // used to determine if ctrl or alt key was pressed at the time of mouse action
                 int mod = event.getModifiers();
                 MyJButton mjb = (MyJButton)event.getSource();
-                // is the MyJbutton that the mouse action occurred in flagged
+                // is the MyJButton that the mouse action occurred in flagged
                 boolean flagged = mjb.getText().equals(MineSweapPart.UNEXPOSED_FLAGGED_MINE_SYMBOL);
-                // is the MyJbutton that the mouse action occurred in already exposed
+                // is the MyJButton that the mouse action occurred in already exposed
                 boolean exposed = mjb.getBackground().equals(CELL_EXPOSED_BACKGROUND_COLOR);
                 // flag a cell : ctrl + left click
                 if ( !flagged && !exposed && (mod & flagKey) != 0 )
                 {
                     mjb.setText(MineSweapPart.UNEXPOSED_FLAGGED_MINE_SYMBOL);
                     --MineSweapPart.guessedMinesLeft;
-                    // if the MyJbutton that the mouse action occurred in is a mine
+                    // if the MyJButton that the mouse action occurred in is a mine
                     // 10 pts
                     if ( mineGrid[mjb.ROW][mjb.COL] == IS_A_MINE_IN_GRID_VALUE ) {
                         --MineSweapPart.actualMinesLeft;
@@ -305,7 +305,7 @@ public class MineSweapPart extends JFrame
                 {
                     mjb.setText("");
                     ++MineSweapPart.guessedMinesLeft;
-                    // if the MyJbutton that the mouse action occurred in is a mine
+                    // if the MyJButton that the mouse action occurred in is a mine
                     // 10 pts
                     if ( mineGrid[mjb.ROW][mjb.COL] == IS_A_MINE_IN_GRID_VALUE )
                     {
@@ -346,7 +346,7 @@ public class MineSweapPart extends JFrame
             {
                 // what else do you need to adjust?
                 // could the game be over?
-                // if the game is over - what else needs to be exposed / highlighted]
+                // if the game is over - what else needs to be exposed / highlighted
                 for (int row = 0; row<MINE_GRID_ROWS; ++row) {
                     for (int col = 0; col<MINE_GRID_COLS; ++col) {
                         int index = (row * MINE_GRID_ROWS) + col;
@@ -398,7 +398,6 @@ public class MineSweapPart extends JFrame
     static MineSweapPart game;
 
     public static void main(String[] args) {
-
         // This is checking to see if the highscore file was generated / wasn't the first time playing the game
         File f= new File("highscore.msw");
         if (!(f.exists() && !f.isDirectory())) {
@@ -427,8 +426,7 @@ public class MineSweapPart extends JFrame
         dontSueText.setFont(new Font("Comic Sans MS", Font.PLAIN, 8));
         panel.add(dontSueText, BorderLayout.CENTER);
         int result = JOptionPane.showOptionDialog(null, panel, "MineSweeper", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null);
-        System.out.println(result);
-        if (result > -1 && result < 3) // -1 is called if the press the close button
+        if (result > -1 && result < 3) // -1 is called if they press the close button
             game = new MineSweapPart(result, 0, 0, 0);
         else if (result == 3){
             boolean valid = false;
@@ -446,7 +444,6 @@ public class MineSweapPart extends JFrame
                 customPanel.add(cMines, BorderLayout.EAST);
                 Object[] customOptions = {"Submit", "Cancel"};
                 int customResult = JOptionPane.showOptionDialog(null, customPanel, "Custom Game", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, customOptions, null);
-                System.out.println("Rows: " + cRows.getText() + " Columns: " + cCols.getText() + " Mines: " + cMines.getText());
                 if (customResult == 0) {
                     int rows, col, mines;
                     try {
@@ -460,6 +457,7 @@ public class MineSweapPart extends JFrame
                         System.err.println("Number Formatting issue. Please try again!\n\t" + e.getMessage());
                     }
                 } else {
+                    valid = true;
                     main(null);
                 }
             }
